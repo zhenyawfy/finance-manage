@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+  mvc:
+    static-path-pattern: /static/** #过滤规则
+  resources:
+    static-locations: classpath:/static/ #静态资源
+  servlet:
+    multipart:
+      enabled: true #开启上传支持
+      file-size-threshold: 0 #文件写入磁盘的阈值
+      location: /appData #上传文件的临时保存位置
+      max-file-size: 1MB #上传单个文件的最大大小
+      max-request-size: 10MB #多文件上传总大小
+      resolve-lazily: false #文件是否延迟解析
+

@@ -1,0 +1,6 @@
+server:
+  port: 80
+  servlet:
+    context-path: /financeManage
+  tomcat:
+    uri-encoding: UTF-8
