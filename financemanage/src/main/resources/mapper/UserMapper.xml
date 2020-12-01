@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.UserMapper">
+    <insert id="addUser" parameterType="com.demo.dao.User">
+        INSERT INTO FM_USER(`FU_ID`, `FU_LOGIN_NAME`, `FU_NAME`, `FU_SEX`, `FU_PWD`, `FU_EMAIL`, `FU_ADDRESS`, `FU_MOBILE`, `FU_CREATE_TIME`, `FU_UPDATE_TIME`)
+        VALUES (#{id},#{loginName},#{name},#{sex},#{pwd},#{email},#{address},#{mobile},#{createTime},#{updateTime})
+    </insert>
+</mapper>
