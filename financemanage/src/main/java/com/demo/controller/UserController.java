@@ -20,4 +20,9 @@ public class UserController extends BaseController {
         userService.addUser(user);
         return this.success();
     }
+
+    @PostMapping(value = "/userLogin")
+    public ResponseDataMessage userLogin(@RequestBody User user) {
+        return this.success();
+    }
 }
