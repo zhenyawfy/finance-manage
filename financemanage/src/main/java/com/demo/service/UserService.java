@@ -20,4 +20,9 @@ public class UserService {
         user.setId(IdUtils.getId());
         return userMapper.addUser(user);
     }
+
+    public User findByLoginName(String loginName) {
+        User user = userMapper.findByLoginName(loginName);
+        return user;
+    }
 }

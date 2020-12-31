@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.DayRecordMapper">
+    <resultMap id="baseResultMap" type="com.demo.dao.DayRecord">
+        <id column="FDR_ID" property="id"></id>
+        <result property="userId" column="FDR_USER_ID" />
+        <result property="recordDay" column="FDR_RECORD_DATE" />
+        <result property="grownAmt" column="FDR_GOWN_AMT" />
+        <result property="foodAmt" column="FDR_FOOD_AMT" />
+        <result property="houseAmt" column="FDR_HOUSE_AMT" />
+        <result property="travelAmt" column="FDR_TRAVEL_AMT" />
+        <result property="otherAmt" column="FDR_OTHER_AMT" />
+        <result property="month" column="FDR_MONTH" />
+        <result property="createTime" column="FU_CREATE_TIME" />
+        <result property="updateTime" column="FU_UPDATE_TIME" />
+    </resultMap>
+    <select id="queryByCondition" resultMap="baseResultMap" resultType="com.demo.dao.DayRecord">
+        SELECT * FROM fm_day_record
+        <where>
+            <if test="cm.userId != null and cm.userId !=''">
+                AND FDR_USER_ID = #{cm.userId}
+            </if>
+            <if test="cm.startDate != null and cm.startDate !=''">
+                AND FDR_RECORD_DATE &gt;= #{cm.startDate}
+            </if>
+            <if test="cm.endDate != null and cm.endDate !=''">
+                AND FDR_RECORD_DATE &lt;= #{cm.endDate}
+            </if>
+        </where>
+        Limit #{cm.pageIndex},#{cm.pageIndexEnd}
+    </select>
+    <select id="queryCountByCondition" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM fm_day_record
+        <where>
+            <if test="cm.userId != null and cm.userId !=''">
+                AND FDR_USER_ID = #{cm.userId}
+            </if>
+            <if test="cm.startDate != null and cm.startDate !=''">
+                AND FDR_RECORD_DATE &gt;= #{cm.startDate}
+            </if>
+            <if test="cm.endDate != null and cm.endDate !=''">
+                AND FDR_RECORD_DATE &lt;= #{cm.endDate}
+            </if>
+        </where>
+    </select>
+    <insert id="saveDayRecord" parameterType="com.demo.dao.DayRecord">
+        INSERT INTO fm_day_record(`FDR_ID`, `FDR_USER_ID`, `FDR_RECORD_DATE`, `FDR_GOWN_AMT`, `FDR_FOOD_AMT`, `FDR_HOUSE_AMT`, `FDR_TRAVEL_AMT`, `FDR_OTHER_AMT`, `FDR_MONTH`, `FDR_CREATE_TIME`, `FDR_UPDATE_TIME`)
+        VALUES (#{id}, #{userId}, #{recordDay}, #{grownAmt}, #{foodAmt}, #{houseAmt}, #{travelAmt}, #{otherAmt}, #{month}, #{createTime}, #{updateTime})
+    </insert>
+    <select id="queryByDate" resultMap="baseResultMap" parameterType="com.demo.dao.DayRecord" resultType="com.demo.dao.DayRecord">
+        SELECT * FROM fm_day_record
+        <where>
+            <if test="userId != null and userId != ''">
+                AND FDR_USER_ID = #{userId}
+            </if>
+            <if test="recordDay != null and recordDay != ''">
+                AND FDR_RECORD_DATE = #{recordDay}
+            </if>
+        </where>
+    </select>
+    <delete id="deleteDayRecord" parameterType="com.demo.dao.DayRecord">
+        DELETE FROM fm_day_record WHERE FDR_USER_ID = #{userId} AND FDR_RECORD_DATE = #{recordDay}
+    </delete>
+</mapper>

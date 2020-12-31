@@ -41,3 +41,5 @@ spring:
 mybatis:
   type-aliases-package: com.demo.dao
   mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
