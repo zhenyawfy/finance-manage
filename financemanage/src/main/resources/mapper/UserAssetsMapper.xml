@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.UserAssetsMapper">
+    <resultMap id="baseResultMap" type="com.demo.dao.UserAssets">
+        <id column="FUA_ID" property="id"></id>
+        <result property="userId" column="FUA_USER_ID" />
+        <result property="monthUseAmt" column="FUA_MONTH_USE_AMT" />
+        <result property="monthSurplusAmt" column="FUA_MONTH_SURPLUS_AMT" />
+        <result property="assetsAmt" column="FUA_ASSETS_AMT" />
+        <result property="securityMonth" column="FUA_SECURITY_MONTH" />
+        <result property="goalSecurityAmt" column="FUA_GOAL_SECURITY_AMT" />
+        <result property="securityAmt" column="FUA_SECURITY_AMT" />
+        <result property="goalConservativeAmt" column="FUA_GOAL_CONSERVATIVE_AMT" />
+        <result property="conservativeAmt" column="FUA_CONSERVATIVE_AMT" />
+        <result property="investmentAmt" column="FUA_INVESTMENT_AMT" />
+        <result property="createTime" column="FUA_CREATE_TIME" />
+        <result property="updateTime" column="FUA_UPDATE_TIME" />
+    </resultMap>
+    <select id="queryByUserId" resultMap="baseResultMap" parameterType="java.lang.Long">
+        SELECT * FROM fm_user_assets WHERE FUA_USER_ID = #{userId}
+    </select>
+    <insert id="saveAssets" parameterType="com.demo.dao.UserAssets">
+        INSERT INTO fm_user_assets(`FUA_ID`, `FUA_USER_ID`, `FUA_MONTH_USE_AMT`, `FUA_MONTH_SURPLUS_AMT`, `FUA_ASSETS_AMT`, `FUA_SECURITY_MONTH`, `FUA_GOAL_SECURITY_AMT`, `FUA_SECURITY_AMT`, `FUA_GOAL_CONSERVATIVE_AMT`, `FUA_CONSERVATIVE_AMT`, `FUA_INVESTMENT_AMT`, `FUA_CREATE_TIME`, `FUA_UPDATE_TIME`)
+        VALUES (#{id}, #{userId}, #{monthUseAmt}, #{monthSurplusAmt}, '0.00', #{securityMonth}, #{goalSecurityAmt}, '0.00', #{goalConservativeAmt}, '0.00', '0.00', #{createTime}, #{updateTime});
+    </insert>
+</mapper>

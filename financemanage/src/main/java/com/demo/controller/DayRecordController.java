@@ -5,14 +5,11 @@ import com.demo.base.PageInfo;
 import com.demo.base.ResponseDataMessage;
 import com.demo.dao.DayRecord;
 import com.demo.service.DayRecordService;
-import com.demo.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Map;
 
 @RestController
