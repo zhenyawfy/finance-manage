@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 public class EncryptUtil {
     // ACCESS_EXPIRES_IN 对应jwt生成acess_token的有效时间
-    private static final long ACCESS_EXPIRES_IN = 24 * 60 * 60 * 1000L;
+    private static final long ACCESS_EXPIRES_IN = 30 * 60 * 1000L;
 
     /**
      * Used building output as Hex
@@ -53,13 +53,6 @@ public class EncryptUtil {
             out[j++] = DIGITS[0x0F & data[i]];
         }
         return out;
-    }
-
-    public static Token authorize(User user, String password, HttpServletRequest request) {
-        if (!SecurityUtils.verifyPassword(password, user.getPwd())) {
-            return null;
-        }
-        return createToken(String.valueOf(user.getId()), user.getLoginName());
     }
 
     public static Token createToken(String uuid, String loginId) {
